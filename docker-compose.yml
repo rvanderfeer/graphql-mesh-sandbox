@@ -1,0 +1,32 @@
+version: '3'
+volumes:
+  mariadb-data:
+  mongodb-data:
+services:
+  mariadb:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: MariaDB_root_password
+      MYSQL_DATABASE: MariaDB_database
+      MYSQL_USER: MariaDB_user
+      MYSQL_PASSWORD: MariaDB_password
+    volumes:
+      - mariadb-data:/var/lib/mysql
+      - ./dump/mariadb:/docker-entrypoint-initdb.d
+    ports:
+      - "8881:3306"
+  mongo:
+    image: mongo:latest
+#    image: mongo:3.6
+#    platform: linux/amd64
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: MongoDB_database
+      MONGO_INITDB_ROOT_USERNAME: MongoDB_username
+      MONGO_INITDB_ROOT_PASSWORD: MongoDB_password
+    volumes:
+      - mongodb-data:/data/db
+      - ./dump/mongodb:/docker-entrypoint-initdb.d
+    ports:
+      - "8882:27017"

@@ -1,0 +1,19 @@
+{
+  "name": "graphql-mesh-sandbox",
+  "version": "1.0.0",
+  "repository": "https://github.com/rvanderfeer/graphql-mesh-sandbox.git",
+  "author": "Ronald van der Feer <r.vanderfeer@primadeluxe.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "docker compose up & mesh dev"
+  },
+  "dependencies": {
+    "@graphql-mesh/cli": "^0.88.5",
+    "@graphql-mesh/graphql": "^0.96.3",
+    "@graphql-mesh/mongoose": "^0.96.4",
+    "@graphql-mesh/mysql": "^0.96.4",
+    "graphql": "^16.8.1",
+    "mongoose": "^8.1.1",
+    "tslib": "^2.6.2"
+  }
+}

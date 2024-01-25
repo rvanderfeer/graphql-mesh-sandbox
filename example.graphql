@@ -1,0 +1,46 @@
+# MySQL datasource, table organisation
+query FindOrganisationByAgbCode($AGBCode:String) {
+    organisation: organisation(where: {agbCode: $AGBCode}){
+        id
+        agbCode
+        label
+        url
+    }
+}
+
+# MongoDb datasource, collection Enterprise
+query FindInMongoDbByAGBCode($AGBCode: String) {
+    organisation: Enterprise_findOne(filter: {AGBCode: $AGBCode}) {
+        _id
+        AGBCode # note this is uppercase 'AGB'
+        Name
+        TradeName
+    }
+}
+
+# expected result
+type organisation {
+
+    id: Int!
+    agbCode: String
+    label: String
+    url: String
+
+    _id: MongoID!
+    AGBCode: String
+    Name: String
+    TradeName: String
+}
+
+# ideal result, rewriting props
+type organisation {
+    mysql_id: Int!  # possibly rename `id` to `mysql_id`
+    agbCode: String
+    label: String
+    url: String
+
+    mongo_id: MongoID! # possibly rename `_id` to `mongo_id`
+    # AGBCode: String => drop duplicate field
+    name: String    # apply a naming convention
+    tradeName: String # apply a naming convention
+}

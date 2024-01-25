@@ -1,0 +1,16 @@
+sources:
+  - name: MariaDB_database
+    handler:
+      mysql:
+        host: localhost
+        port: 8881
+        user: MariaDB_user
+        password: MariaDB_password
+        database: MariaDB_database
+  - name: MongoDB_database
+    handler:
+      mongoose:
+        connectionString: mongodb://MongoDB_username:MongoDB_password@localhost:8882/MongoDB_database
+        models:
+          - name: Enterprise
+            path: ./src/MongoDB_database/models.js#Enterprise

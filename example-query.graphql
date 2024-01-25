@@ -1,0 +1,25 @@
+# MongoDb datasource, collection Enterprise
+query FindInMongoDbByAGBCode($AGBCode: String) {
+    organisation: Enterprise_findOne(filter: {AGBCode: $AGBCode}) {
+        _id
+        AGBCode
+        Name
+        TradeName
+    }
+}
+
+# MySQL datasource, table organisation
+query FindInMariaDBByAgbCode($AGBCode:String) {
+  organisation(where:{agbCode:$AGBCode}) {
+    id
+    agbCode
+    label
+    url
+  }
+}
+
+## variables for testing both queries
+#
+#{
+#  "AGBCode": "01052222"
+#}
